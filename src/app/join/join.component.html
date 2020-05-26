@@ -1,0 +1,91 @@
+<!-- Start Header Area -->
+<header id="header">
+	<div class="container">
+		<div class="row align-items-center justify-content-between d-flex">
+			<div id="logo">
+				<a href="/"><img src="assets/img/logo.png" alt="" title="" /></a>
+			</div>
+			<nav id="nav-menu-container">
+				<ul *ngIf="!isLogined" class="nav-menu">
+					<li><a href="/login">Sign In</a></li>
+					<li class="menu-active"><a href="/join">Sign Up</a></li>
+				</ul>
+				<ul *ngIf="isLogined" class="nav-menu">
+					<li><a href="/login" (click)="logout()">Sign out</a></li>
+					<li><a href="/dashboard">Dashboard</a></li>
+				</ul>
+			</nav><!-- #nav-menu-container -->
+		</div>
+	</div>
+</header>
+<!-- End Header Area -->
+
+<!-- Start Banner Area -->
+	<section class="home-banner-area relative">
+	<div class="container">
+		<div class="row fullscreen d-flex align-items-center justify-content-center">
+			<div class="wrapper fadeInDown">
+				<div id="formContent">
+					<!-- Tabs Titles -->
+					<h2 class="active">Sign Up </h2>
+			
+					<!-- Icon -->
+					<!-- <div class="fadeIn first">
+						<img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+					</div> -->
+			
+					<!-- Join Form -->
+					<form [formGroup]='joinForm' (ngSubmit)='join()'>
+						<input formControlName="id" type="text" id="id" class="custom-input fadeIn second" name="id" placeholder="id">
+						<input formControlName="password" type="password" id="password" class="custom-input fadeIn third" name="password" placeholder="password">
+						<input formControlName="githubUsername" type="text" id="githubUsername" class="custom-input fadeIn fourth" name="githubUsername" placeholder="github username">
+						<input formControlName="githubPassword" type="password" id="githubPassword" class="custom-input fadeIn fifth" name="githubpassword" placeholder="github password">
+						<p class="littleText fadeIn fifth">* 깃허브 계정 비밀번호는 검증 후 저장하지 않습니다.</p>
+						<input type="submit" class="fadeIn sixth genric-btn primary" value="Join">
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rocket-img">
+		<img src="assets/img/rocket.png" alt="">
+	</div>
+</section>
+<!-- End Banner Area -->
+
+<!-- Start Sample Area -->
+<section class="sample-text-area">
+	<div class="container">
+		<h3 class="text-heading">Text Sample</h3>
+		<p class="sample-text">
+			Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film
+			to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video
+			renters with their big project. But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move
+			from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand
+			CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on
+			your doorstep? You need to create eye-popping artwork and have your project replicated. Using a reputable full service
+			DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional
+			end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results:
+		</p>
+	</div>
+</section>
+<!-- End Sample Area -->
+
+<!-- Start Footer Area -->
+<footer class="footer-area section-gap">
+	<div class="container">
+		<div class="footer-bottom row align-items-center">
+			<p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+		</div>
+	</div>
+</footer>
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+	<a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->

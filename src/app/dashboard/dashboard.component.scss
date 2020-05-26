@@ -1,0 +1,28 @@
+/* search.html에 사용될 css입니다. */
+.progress-table {
+  padding: 15px 0px 0px 0px;
+}
+.progress-table .table-head .number,
+.progress-table .table-head .fileUrl,
+.progress-table .table-head .position {
+  line-height: 40px;
+  font-weight: bold;
+}
+.progress-table .number {
+	width: 11.83%;
+	padding-left: 30px;
+}
+.progress-table	.fileUrl {
+	width: 60%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.progress-table	.position {
+	width: 28.07%;
+	padding-left: 20px;
+}
+
+.blog-pagination {
+  padding-top: 0px;
+}
