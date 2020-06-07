@@ -38,7 +38,7 @@
 					<form [formGroup]='joinForm' (ngSubmit)='join()'>
 						<input formControlName="id" type="text" id="id" class="custom-input fadeIn second" name="id" placeholder="id">
 						<input formControlName="password" type="password" id="password" class="custom-input fadeIn third" name="password" placeholder="password">
-						<input formControlName="githubUsername" type="text" id="githubUsername" class="custom-input fadeIn fourth" name="githubUsername" placeholder="github username">
+						<input formControlName="githubUsername" id="githubUsername" class="custom-input fadeIn fourth" name="githubUsername" placeholder="github username">
 						<input formControlName="githubPassword" type="password" id="githubPassword" class="custom-input fadeIn fifth" name="githubpassword" placeholder="github password">
 						<p class="littleText fadeIn fifth">* 깃허브 계정 비밀번호는 검증 후 저장하지 않습니다.</p>
 						<input type="submit" class="fadeIn sixth genric-btn primary" value="Join">
