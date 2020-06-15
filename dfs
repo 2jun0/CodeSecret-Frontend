@@ -1,0 +1,6 @@
+
+SUMMARY
+Change HTTP library used to send requests
+TESTS
+  - [x] Send 'GET' request
+  - [x] Send 'POST' request with/without body
