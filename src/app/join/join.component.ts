@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // services
 import { AuthService } from '../services/auth.service';
@@ -23,8 +23,9 @@ export class JoinComponent implements OnInit {
 
   ngOnInit() {
     this.joinForm = this.formBuilder.group({
-      id: '',
-      password: '',
+      id: new FormControl('', [Validators.required, Validators.pattern(/^[0-9a-z]{5,12}$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/)]),
+      repeatPassword: '',
       githubUsername: '',
       githubPassword: ''
     })
@@ -36,6 +37,13 @@ export class JoinComponent implements OnInit {
     console.log('[payload]', this.joinForm.value);
 
     let payload = this.joinForm.value;
+
+    if(payload.password != payload.repeatPassword) {
+      alert('비밀번호를 다시 입력해주세요.')
+      this.utilService.loadAndRefresh(this.router, '/join');
+      return
+    }
+
     this.authService.join(payload)
       .subscribe(
         (res) => {

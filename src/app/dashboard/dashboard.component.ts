@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
       this.secretKeyService.getSecretKeys().subscribe(
         (res) => {
           this.secretKeys = res;
+          
         },
         ({error}) => {
           console.log(error);
