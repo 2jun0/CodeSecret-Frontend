@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 // services
 import { AuthService } from '../services/auth.service';
 import { UtilService } from '../services/util.service';
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      id: '',
-      password: ''
+      id: new FormControl('', [Validators.required, Validators.pattern(/^[0-9a-z]{5,12}$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/)])
     })
 
     this.isLogined = this.authService.isLogined();

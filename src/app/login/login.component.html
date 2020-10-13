@@ -29,16 +29,13 @@
 					<!-- Tabs Titles -->
 					<h2 class="active">Sign In</h2>
 			
-					<!-- Icon -->
-					<!-- <div class="fadeIn first">
-						<img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-					</div> -->
-			
 					<!-- Login Form -->
 					<form [formGroup]='loginForm' (ngSubmit)='login()'>
+						<span class="input-alert" *ngIf="loginForm.controls.id.hasError('pattern') && !loginForm.controls.id.hasError('required')"> <strong>* 5개 이상 12개 이하의 숫자 혹은 영문자</strong>를 입력해주세요</span>
 						<input formControlName="id" type="text" id="id" class="custom-input fadeIn second" name="id" placeholder="id">
+						<span class="input-alert" *ngIf="loginForm.controls.password.hasError('pattern') && !loginForm.controls.password.hasError('required')"> <strong>* 숫자, 특수문자 각 1회, 영문자 2개 사용하여 8개 이상</strong>을 입력해주세요</span>
 						<input formControlName="password" type="password" id="password" class="custom-input fadeIn third" name="password" placeholder="password">
-						<input type="submit" class="fadeIn fifth genric-btn primary" value="login">
+						<input [disabled]="!loginForm.valid" type="submit" class="fadeIn fifth genric-btn primary" value="login">
 					</form>
 					
 				</div>
