@@ -1,0 +1,145 @@
+<!-- Start Header Area -->
+<header id="header">
+	<div class="container">
+		<div class="row align-items-center justify-content-between d-flex">
+			<div id="logo">
+				<a href="/"><img src="assets/img/logo.png" alt="" title="" /></a>
+			</div>
+			<nav id="nav-menu-container">
+				<ul *ngIf="!isLogined" class="nav-menu">
+					<li><a href="/login">Sign In</a></li>
+					<li><a href="/join">Sign Up</a></li>
+				</ul>
+				<ul *ngIf="isLogined" class="nav-menu">
+					<li><a href="/login" (click)="logout()">Sign out</a></li>
+					<li class="menu-active"><a href="/dashboard">Dashboard</a></li>
+				</ul>
+			</nav><!-- #nav-menu-container -->
+		</div>
+	</div>
+</header>
+<!-- End Header Area -->
+
+<!-- Start Banner Area -->
+
+<section class="banner-area relative">
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+
+
+				<h1 class="text-white">
+					Secret Keys
+				</h1>
+				<p>You can protect potential risks to check your dashboard</p>
+			</div>
+		</div>
+	</div>
+	<div class="rocket-img">
+		<img src="assets/img/rocket.png" alt="">
+	</div>
+</section>
+<!-- End Banner Area -->
+
+<section class="sample-text-area">
+	<div class="container">
+		<div class="vcv-container">
+			<div class="vce-message-box vce vce-message-box-style--error">
+				<div class="vce-message-box-inner">
+					<span class="vce-message-box-icon material-icons">change_history</span>
+					<span class="vce-message-box-text">
+						<h3>{{repo_fullname}} 에서 <b style="color:red">{{secret_keys.length}}개</b>의 Secret Key가 발견되었습니다.</h3>
+						
+					</span>
+				</div>
+			</div>
+			<div class="vce-message-box vce vce-message-box-style--error">
+				<div class="progress-table-wrap">
+					<div class="progress-table">
+						<div class="table-head">
+							<div class="first">탐지된 Key값</div>
+							<div class="second">파일 경로</div>
+						</div>
+						<ng-container *ngFor="let secret_key of secret_keys; index as i">
+							<div class="table-row">
+								<div class="first"><p style="color:red">{{secret_key['content']}}</p></div>
+								<div class="second">{{secret_key['fileFullname']}}</div>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+	<hr>
+	
+	<div class="container">
+		<div class="vcv-container">
+			<div class="vce-message-box vce vce-message-box-style--warning">
+				<div class="vce-message-box-inner">
+					<span class="vce-message-box-icon material-icons">help</span>
+					<span class="vce-message-box-text">
+						<h3>어떻게 해야 하나요?</h3>
+						<p>Code Secret은 Secret Key가 노출된 깃허브 소스코드를 자동으로 수정해드립니다. 
+							<br>하지만, {{userId}}님의 소스코드 보안을 더 강화하기 위해 아래의 지침을 따라 주셔야 합니다.</p>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="vcv-container">
+			<div class="vce-message-box vce vce-message-box-style--information">
+				<div class="vce-message-box-inner">
+					<span class="vce-message-box-icon material-icons">looks_one</span>
+					<span class="vce-message-box-text">
+						<h3>노출된 Secret Key를 재발급 받으세요.</h3>
+						<p>이미 Github에 노출된 정보는 보안성을 상실한 것으로 간주해야 합니다.<br>Secret Key 제공자에게 노출된 Secret Key를 재발급 받으세요.</p>
+					</span>
+				</div>
+			</div>
+			<div class="vce-message-box vce vce-message-box-style--information">
+				<div class="vce-message-box-inner">
+					<span class="vce-message-box-icon material-icons">looks_two</span>
+					<span class="vce-message-box-text">
+						<h3>아래의 바로가기를 눌러 수정한 코드를 Merge 해주세요.</h3>
+						<p><a [attr.href]="pull_request_url" target="_blank">수정한 코드 보러가기</a> (아래는 예시 화면입니다.)</p>
+						<img src="assets/img/example1.png">
+					</span>
+				</div>
+			</div>
+			<div class="vce-message-box vce vce-message-box-style--information">
+				<div class="vce-message-box-inner">
+					<span class="vce-message-box-icon material-icons">looks_3</span>
+					<span class="vce-message-box-text">
+						<h3>로컬 저장소로 업데이트된 코드를 Pull 하고<br>재발급 받은 Secret Key를 _secret_keys.* 파일의 "Your Secret Key"에 입력해주세요</h3>
+						<p>깃허브 저장소로 Push 하기 전에 _secret_keys.*파일이 제외대상에 포함되는지 꼭 확인해주세요</p>
+						<img src="assets/img/example2.png">
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<p>*Code Secret팀은 Secret Key와 같은 개인정보 누출사고에 책임을 지지 않습니다.</p>
+	</div>
+</section>
+
+<!-- Start Footer Area -->
+<footer class="footer-area section-gap">
+	<div class="container">
+		<div class="footer-bottom row align-items-center">
+			<p>This program is made by CodeSecretTeam Code (Code:<a href="https://github.com/2jun0/CodeSecret-Backend">Backend</a>,<a href="https://github.com/2jun0/CodeSecret-Frontend">FrontEnd</a>)</p>
+			<p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+		</div>
+	</div>
+</footer>
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+	<a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->

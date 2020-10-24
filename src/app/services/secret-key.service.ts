@@ -18,7 +18,11 @@ export class SecretKeyService {
     private authService: AuthService
   ) { }
 
-  getSecretKeys(): Observable<SecretKey[]> {
-    return this.http.get<SecretKey[]>(`${this.backendUrl}/get-secret-keys`, {headers: this.authService.getHeader()});
+  getSecretKeys(repo_fullname): Observable<SecretKey[]> {
+    return this.http.post<SecretKey[]>(`${this.backendUrl}/get-secret-keys`, {repo_fullname:repo_fullname}, {headers: this.authService.getHeader()});
+  }
+
+  getLeakedRepos(): Observable<JSON> {
+    return this.http.get<JSON>(`${this.backendUrl}/get-leaked-repos`, {headers: this.authService.getHeader()});
   }
 }

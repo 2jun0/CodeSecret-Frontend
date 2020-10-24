@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-// services
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { AuthService } from '../services/auth.service';
 import { SecretKeyService } from '../services/secret-key.service';
 import { UtilService } from '../services/util.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  isLogined: boolean;
-  leaked_repos = [];
-  total_secret_key_cnt = 0;
+export class DetailComponent implements OnInit {
+
+  private repo_fullname: string
+  private isLogined: Boolean
+  private secret_keys
+  private userId: String
+  private pull_request_url: String
 
   constructor(
+    private route: ActivatedRoute,
     private authService: AuthService,
     private secretKeyService: SecretKeyService,
     private utilService: UtilService,
@@ -23,15 +27,18 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.repo_fullname = params['repo_fullname'];
+      this.userId = params['userId'];
+      this.pull_request_url = params['pull_request_url'];
+    });
+
     this.isLogined = this.authService.isLogined();
 
     if(this.isLogined) {
-      this.secretKeyService.getLeakedRepos().subscribe(
+      this.secretKeyService.getSecretKeys(this.repo_fullname).subscribe(
         (res) => {
-          for(var repo_name in res){
-            this.total_secret_key_cnt += res[repo_name]['secret_key_count']
-            this.leaked_repos.push(res[repo_name])
-          }
+          this.secret_keys = res
         },
         (err) => {
           if (err.status == 401) {
@@ -45,7 +52,4 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  logout() {
-    this.authService.logout();
-  }
 }

@@ -4,6 +4,7 @@ import { Error404Component } from './error/error404/error404.component';
 import { JoinComponent } from './join/join.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'join',
     component: JoinComponent
+  },
+  {
+    path: 'detail',
+    component: DetailComponent
   },
   {
     path: 'dashboard',

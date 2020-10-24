@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<div class="rocket-img">
-		<img src="img/rocket.png" alt="">
+		<img src="assets/img/rocket.png" alt="">
 	</div>
 </section>
 <!-- End Banner Area -->
@@ -44,7 +44,7 @@
 		<!-- Start Table Area -->
 		
 		<div class="section-top-border">
-			<ng-container *ngIf="secretKeys.length == 0">
+			<ng-container *ngIf="total_secret_key_cnt == 0">
 				<div class="vcv-container">
 					<div class="vce-message-box vce vce-message-box-style--information">
 						<div class="vce-message-box-inner">
@@ -57,29 +57,31 @@
 				</div>
 			</ng-container>
 
-			<ng-container *ngIf="secretKeys.length > 0">
+			<ng-container *ngIf="total_secret_key_cnt > 0">
 				<div class="vcv-container">
 					<div class="vce-message-box vce vce-message-box-style--error">
 						<div class="vce-message-box-inner">
 							<span class="vce-message-box-icon material-icons">change_history</span>
 							<span class="vce-message-box-text">
-								<p>깃허브 내 {{secretKeys.length}}개의 secret key가 검출되었습니다.</p>
+								<p>깃허브 내 {{total_secret_key_cnt}}개의 secret key가 검출되었습니다.</p>
+								<p>'수정한 코드 보기' 버튼을 눌러 시스템이 수정한 코드를 Merge해주세요!</p>
 							</span>
 						</div>
 					</div>
 				</div>
+
 				<div class="progress-table-wrap">
 					<div class="progress-table">
 						<div class="table-head">
-							<div class="number">#</div>
-							<div class="fileUrl">저장소 이름</div>
-							<div class="position">탐지된 key값</div>
+							<div class="first">저장소 이름</div>
+							<div class="second">탐지된 Key 개수</div>
+							<div class="third">Pull request 링크</div>
 						</div>
-						<ng-container *ngFor="let key of secretKeys; index as i">
+						<ng-container *ngFor="let repo of leaked_repos; index as i">
 							<div class="table-row">
-								<div class="number">{{i}}</div>
-								<div class="fileUrl">123</div>
-								<div class="position">1:13</div>
+								<div class="first">{{repo['name']}}</div>
+								<div class="second">{{repo['secret_key_count']}}개 <a [routerLink]="['/detail']" [queryParams]="{repo_fullname: repo['fullname'], userId: repo['owner'], pull_request_url: repo['pull_request_url']}" target="_blank">[자세히 보기]</a></div>
+								<div class="third"> <a [attr.href]="repo['pull_request_url']" target="_blank">수정한 코드 보기</a></div>
 							</div>
 						</ng-container>
 					</div>
@@ -119,6 +121,7 @@
 <footer class="footer-area section-gap">
 	<div class="container">
 		<div class="footer-bottom row align-items-center">
+			<p>This program is made by CodeSecretTeam Code (Code:<a href="https://github.com/2jun0/CodeSecret-Backend">Backend</a>,<a href="https://github.com/2jun0/CodeSecret-Frontend">FrontEnd</a>)</p>
 			<p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

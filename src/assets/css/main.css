@@ -647,7 +647,7 @@ td, th {
     #back-top {
       right: 5px; } }
   #back-top a {
-    background: url(../img/rocket.png) no-repeat;
+    background: url(../../assets/img/rocket.png) no-repeat;
     background-size: 95% 80%;
     width: 50px;
     height: 116px;
@@ -1901,6 +1901,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-align: center;
   color: #fff;
   position: relative; }
+
   @media (max-width: 767px) {
     .about-content {
       margin-top: 140px; } }

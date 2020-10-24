@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { JoinComponent } from './join/join.component';
 import { AuthService } from './services/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     JoinComponent,
     Error404Component,
     DashboardComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
