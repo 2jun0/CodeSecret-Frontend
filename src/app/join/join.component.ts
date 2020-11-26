@@ -37,8 +37,8 @@ export class JoinComponent implements OnInit {
     console.log('[payload]', this.joinForm.value);
 
     let payload = this.joinForm.value;
-
-    if(payload.githubUsername.include('@')) {
+    
+    if(payload.githubUsername.includes('@')) {
       alert('깃허브 정보는 이메일이 아닌 사용자이름을 입력해주세요.')
       return
     }

@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit {
     })
 
     this.isLogined = this.authService.isLogined();
+    if(this.isLogined) {
+      this.utilService.loadAndRefresh(this.router, '/dashboard');
+    }
   }
 
   login() {
